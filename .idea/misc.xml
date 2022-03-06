@@ -3,7 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/botoniniciarsesion.xml" value="0.3635" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/circulo.xml" value="0.2795" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/flecha.xml" value="0.3635" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/logo.xml" value="0.1935" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/sexoboton.xml" value="0.3635" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/txtiniciarsesion.xml" value="0.1935" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/txtregistrate.xml" value="0.3215" />
         <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/activity_main.xml" value="0.2803442028985507" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/botoniniciarsesion.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/groups.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/lists.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/product.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/registro.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/signin.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/layout/signup.xml" value="0.22" />
+        <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/mipmap-anydpi-v26/flecha_round.xml" value="0.3635" />
       </map>
     </option>
   </component>
