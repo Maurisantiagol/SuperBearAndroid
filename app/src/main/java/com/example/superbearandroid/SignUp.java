@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.net.URL;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,6 +47,7 @@ public class SignUp extends AppCompatActivity {
         etco1 = (EditText)findViewById(R.id.etco1);
         etco2 = (EditText)findViewById(R.id.etco2);
         aviso = (CheckBox)findViewById(R.id.checkBox4);
+        mDisplayDate = (EditText)findViewById(R.id.mDisplayDate);
 
         btnlink = findViewById(R.id.button_link);
         String url = "https://super-bear.azurewebsites.net/avisodeprivacidad";
@@ -109,6 +111,8 @@ public class SignUp extends AppCompatActivity {
         String contra1 = etco1.getText().toString();
         String contra2 = etco2.getText().toString();
         CheckBox aviso1 = aviso;
+        String fecha =  mDisplayDate.getText().toString();
+        System.out.print(fecha);
 
         if(nombre.length() == 0){
             Toast.makeText(this, "Debes ingresar un nombre", Toast.LENGTH_LONG).show();
@@ -124,12 +128,17 @@ public class SignUp extends AppCompatActivity {
                     }else{
                         if(contra1.equals(contra2)){
                             Toast.makeText(this, "las contaseñas coinciden", Toast.LENGTH_LONG).show();
-                            if(aviso1.isChecked()){
-                                Toast.makeText(this, "acepta terminos y condiciones", Toast.LENGTH_LONG).show();
+                            if (fecha.equals("Fecha de nacimiento")){
+                                Toast.makeText(this, "Ingrese una fecha de nacimiento", Toast.LENGTH_LONG).show();
+                            }else {
+                                if(aviso1.isChecked()){
+                                    Toast.makeText(this, "acepta terminos y condiciones", Toast.LENGTH_LONG).show();
 
-                            }else{
-                                Toast.makeText(this, "Debe leer y aceptar el aviso de privacidad", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(this, "Debe leer y aceptar el aviso de privacidad", Toast.LENGTH_LONG).show();
+                                }
                             }
+
                         }else{
                             Toast.makeText(this, "las contaseñas no coinciden", Toast.LENGTH_LONG).show();
                         }

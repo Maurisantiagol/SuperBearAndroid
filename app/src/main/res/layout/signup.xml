@@ -202,12 +202,12 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/txtiniciarsesion"
-            android:gravity="center"
-            android:hint="DD/MM/YYYY"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
+            android:clickable="true"
             android:focusable="false"
-            android:clickable="true"></EditText>
+            android:gravity="center"
+            android:hint="Fecha de nacimiento"
+            android:textColorHint="@color/black"
+            android:textSize="20sp"></EditText>
     </LinearLayout><LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
