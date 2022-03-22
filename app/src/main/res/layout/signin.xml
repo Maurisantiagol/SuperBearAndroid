@@ -107,51 +107,58 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/correo"
                 android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/txtregistrate"
-                android:layout_height="50dp"
-                android:hint="Correo"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
                 android:gravity="center"
-                ></EditText>
+                android:hint="Correo"
+                android:inputType="textEmailAddress"
+                android:maxLength="64"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"></EditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
             <EditText
-            android:layout_width="match_parent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/txtregistrate"
-            android:layout_height="50dp"
-            android:hint="Contraseña"
-            android:textColorHint="@color/black"
-            android:textSize="20sp"
-            android:gravity="center"
-            ></EditText></LinearLayout>
+                android:id="@+id/contra"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/txtregistrate"
+                android:gravity="center"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"></EditText></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="right">
+
             <Button
                 android:layout_width="150dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/botoniniciarsesion"
-                android:layout_height="50dp"
-                android:hint="Siguiente"
-                android:textColorHint="#FFFFFF"
-                android:textSize="17sp"
                 android:gravity="center"
-                ></Button>
+                android:hint="Siguiente"
+                android:onClick="enviar"
+                android:textColorHint="#FFFFFF"
+                android:textSize="17sp"></Button>
         </LinearLayout>
     </LinearLayout>
 

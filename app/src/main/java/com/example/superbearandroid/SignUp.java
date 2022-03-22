@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.net.URL;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class SignUp extends AppCompatActivity {
     private Spinner spinner1, spinner2;
     private Button btnlink;
     private EditText etn,etc, etco1, etco2;
+    private CheckBox aviso;
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -41,6 +45,7 @@ public class SignUp extends AppCompatActivity {
         etc = (EditText)findViewById(R.id.etc);
         etco1 = (EditText)findViewById(R.id.etco1);
         etco2 = (EditText)findViewById(R.id.etco2);
+        aviso = (CheckBox)findViewById(R.id.checkBox4);
 
         btnlink = findViewById(R.id.button_link);
         String url = "https://super-bear.azurewebsites.net/avisodeprivacidad";
@@ -103,6 +108,7 @@ public class SignUp extends AppCompatActivity {
         String correo = etc.getText().toString();
         String contra1 = etco1.getText().toString();
         String contra2 = etco2.getText().toString();
+        CheckBox aviso1 = aviso;
 
         if(nombre.length() == 0){
             Toast.makeText(this, "Debes ingresar un nombre", Toast.LENGTH_LONG).show();
@@ -118,7 +124,12 @@ public class SignUp extends AppCompatActivity {
                     }else{
                         if(contra1.equals(contra2)){
                             Toast.makeText(this, "las contaseñas coinciden", Toast.LENGTH_LONG).show();
+                            if(aviso1.isChecked()){
+                                Toast.makeText(this, "acepta terminos y condiciones", Toast.LENGTH_LONG).show();
 
+                            }else{
+                                Toast.makeText(this, "Debe leer y aceptar el aviso de privacidad", Toast.LENGTH_LONG).show();
+                            }
                         }else{
                             Toast.makeText(this, "las contaseñas no coinciden", Toast.LENGTH_LONG).show();
                         }
@@ -133,5 +144,21 @@ public class SignUp extends AppCompatActivity {
         startActivity(volver);
     }
 
+    public boolean validarCorreo (String email){
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
 
+    public boolean validarContra (String contra){
+        Pattern pattern = Pattern.compile("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,64}$/");
+        Matcher matcher = pattern.matcher(contra);
+        return matcher.find();
+    }
+
+    public boolean validarNombre (String email){
+        Pattern pattern = Pattern.compile("/^[A-Z]{1,32}$/i");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
 }
