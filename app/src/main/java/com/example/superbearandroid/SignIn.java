@@ -34,6 +34,8 @@ public class SignIn extends AppCompatActivity {
                 Toast.makeText(this, "Debes ingresar una contraseña", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
+                Intent ingresar = new Intent(this, Groups.class);
+                startActivity(ingresar);
             }
         }
     }
