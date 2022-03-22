@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/EMOA1/OneDrive/Escritorio/android/SuperBearAndroid/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/EMOA1/OneDrive/Escritorio/android/SuperBearAndroid/app/src/main/res/layout/signin.xml" value="0.1" />
+        <entry key="..\:/Users/EMOA1/OneDrive/Escritorio/android/SuperBearAndroid/app/src/main/res/layout/signup.xml" value="0.22" />
+        <entry key="..\:/Users/EMOA1/OneDrive/Escritorio/android/SuperBearAndroid/app/src/main/res/layout/spinner_item_alcaldia.xml" value="0.2" />
         <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/botoniniciarsesion.xml" value="0.3635" />
         <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/circulo.xml" value="0.2795" />
         <entry key="..\:/Users/mauri/Desktop/SuperBearAndroid/app/src/main/res/drawable/flecha.xml" value="0.3635" />
