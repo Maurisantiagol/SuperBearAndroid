@@ -133,6 +133,19 @@ public class SignUp extends AppCompatActivity {
                             }else {
                                 if(aviso1.isChecked()){
                                     Toast.makeText(this, "acepta terminos y condiciones", Toast.LENGTH_LONG).show();
+                                    if(validarNombre(nombre) == true) {
+                                        if(validarCorreo(correo) == true) {
+                                            if(validarContra(contra1) == true){
+
+                                            }else{
+                                                Toast.makeText(this, "Ingresa una contraseña valida", Toast.LENGTH_LONG).show();
+                                            }
+                                        }else{
+                                            Toast.makeText(this, "Ingresa un correo valido", Toast.LENGTH_LONG).show();
+                                        }
+                                    }else{
+                                        Toast.makeText(this, "Ingresa un nombre valido", Toast.LENGTH_LONG).show();
+                                    }
 
                                 }else{
                                     Toast.makeText(this, "Debe leer y aceptar el aviso de privacidad", Toast.LENGTH_LONG).show();
@@ -160,13 +173,13 @@ public class SignUp extends AppCompatActivity {
     }
 
     public boolean validarContra (String contra){
-        Pattern pattern = Pattern.compile("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,64}$/");
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$");
         Matcher matcher = pattern.matcher(contra);
         return matcher.find();
     }
 
     public boolean validarNombre (String email){
-        Pattern pattern = Pattern.compile("/^[A-Z]{1,32}$/i");
+        Pattern pattern = Pattern.compile("[a-zA-Z]{1,32}");
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
     }

@@ -33,9 +33,18 @@ public class SignIn extends AppCompatActivity {
             if(contra.length() == 0){
                 Toast.makeText(this, "Debes ingresar una contraseña", Toast.LENGTH_LONG).show();
             }else{
-                Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
-                Intent ingresar = new Intent(this, Groups.class);
-                startActivity(ingresar);
+                if(validarCorreo(correo) == true){
+                    if(validarContra(contra) == true){
+                        Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
+                        Intent ingresar = new Intent(this, Groups.class);
+                        startActivity(ingresar);
+                    }else{
+                        Toast.makeText(this, "Ingresa una contraseña valida", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(this, "Ingresa un correo valido", Toast.LENGTH_LONG).show();
+                }
+
             }
         }
     }
@@ -52,7 +61,7 @@ public class SignIn extends AppCompatActivity {
     }
 
     public boolean validarContra (String contra){
-        Pattern pattern = Pattern.compile("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,64}$/");
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$");
         Matcher matcher = pattern.matcher(contra);
         return matcher.find();
     }
