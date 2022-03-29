@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.toolbox.StringRequest;
+
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
@@ -112,7 +114,104 @@ public class SignUp extends AppCompatActivity {
         String contra2 = etco2.getText().toString();
         CheckBox aviso1 = aviso;
         String fecha =  mDisplayDate.getText().toString();
-        System.out.print(fecha);
+        String spin1 = spinner1.getSelectedItem().toString();
+        String spin2 = spinner2.getSelectedItem().toString();
+        System.out.println(fecha + "-+---+-+-+-+-+-+-+-+-+-+-+-+");
+        System.out.println(spin1);
+        System.out.println(spin2);
+
+        Integer alcaldia = 0;
+        Integer genero = 0;
+
+
+        switch (spin2){
+            case "Masculino":{
+                genero = 1;
+                break;
+            }
+            case "Femenino":{
+                genero = 2;
+                break;
+            }
+            case "Otro":{
+                genero = 3;
+                break;
+            }
+        }
+
+        switch (spin1){
+            case "Álvaro Obregón":{
+                alcaldia = 1;
+                break;
+            }
+            case "Azcapotzalco":{
+                alcaldia = 2;
+                break;
+            }
+            case "Benito Juárez":{
+                alcaldia = 3;
+                break;
+            }
+            case "Coyoacán":{
+                alcaldia = 4;
+                break;
+            }
+            case "Cuajimalpa de Morelos":{
+                alcaldia = 5;
+                break;
+            }
+            case "Cuauhtémoc":{
+                alcaldia = 6;
+                break;
+            }
+            case "Gustavo A. Madero":{
+                alcaldia = 7;
+                break;
+            }
+            case "Iztacalco":{
+                alcaldia = 8;
+                break;
+            }
+            case "Iztapalapa":{
+                alcaldia = 9;
+                break;
+            }
+            case "Magdalena Contreras":{
+                alcaldia = 10;
+                break;
+            }
+            case "Miguel Hidalgo":{
+                alcaldia = 11;
+                break;
+            }
+            case "Milpa Alta":{
+                alcaldia = 12;
+                break;
+            }
+            case "Tláhuac":{
+                alcaldia = 13;
+                break;
+            }
+            case "Tlalpan":{
+                alcaldia = 14;
+                break;
+            }
+            case "Venustiano Carranza":{
+                alcaldia = 15;
+                break;
+            }
+            case "Xochimilco":{
+                alcaldia = 16;
+                break;
+            }
+            default: {
+                alcaldia = 1;
+                break;
+            }
+        }
+
+        System.out.println(genero);
+        System.out.println(alcaldia);
 
         if(nombre.length() == 0){
             Toast.makeText(this, "Debes ingresar un nombre", Toast.LENGTH_LONG).show();
@@ -136,6 +235,7 @@ public class SignUp extends AppCompatActivity {
                                     if(validarNombre(nombre) == true) {
                                         if(validarCorreo(correo) == true) {
                                             if(validarContra(contra1) == true){
+                                                Toast.makeText(this, "++", Toast.LENGTH_LONG).show();
 
                                             }else{
                                                 Toast.makeText(this, "Ingresa una contraseña valida", Toast.LENGTH_LONG).show();
@@ -182,5 +282,10 @@ public class SignUp extends AppCompatActivity {
         Pattern pattern = Pattern.compile("[a-zA-Z]{1,32}");
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
+    }
+
+    private void crearUsuario(String Nombre, String Correo, String Contra, String fecha, int alcaldia, int genero){
+        //StringRequest stringRequest = new StringRequest()
+
     }
 }
