@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.superbearandroid.control.bd;
+
 import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new Task().execute();
+
     }
 
     public void Signin(View view){
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                Class.forName("com.mysql.jdbc.Connection");
-                Connection connection= DriverManager.getConnection("jdbc:mysql://superbears.mysql.database.azure.com/superbear","alexisluisedgarmauriciomiguel","$Beartual1412AELMMFornite$1412mareenplatano777pillomaumiguelin");
+
+                Connection connection= bd.getConnection();
                 Statement statement=connection.createStatement();
                 ResultSet resultSet=statement.executeQuery("Select * from musuario");
 
