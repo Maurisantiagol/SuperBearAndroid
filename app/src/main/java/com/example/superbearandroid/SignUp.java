@@ -236,6 +236,7 @@ public class SignUp extends AppCompatActivity {
                                         if(validarCorreo(correo) == true) {
                                             if(validarContra(contra1) == true){
                                                 Toast.makeText(this, "++", Toast.LENGTH_LONG).show();
+                                                //registro
 
                                             }else{
                                                 Toast.makeText(this, "Ingresa una contraseña valida", Toast.LENGTH_LONG).show();
@@ -285,7 +286,31 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void crearUsuario(String Nombre, String Correo, String Contra, String fecha, int alcaldia, int genero){
-        //StringRequest stringRequest = new StringRequest()
+        /*
+
+         try {
+                Connection connection= bd.getConnection();
+                Statement statement=connection.createStatement();
+                ResultSet resultSet=statement.executeQuery("SELECT * FROM musuario WHERE (cor_usu = +Correo+ )");
+
+                        if(resultSet == null){
+                        try {
+                        Connection connection= bd.getConnection();
+                        Statement statement=connection.createStatement();
+                        ResultSet resultSet=statement.executeQuery("INSERT");
+
+
+                    } catch (Exception e) {
+                        error =e.toString();
+                    }
+
+                }
+
+            } catch (Exception e) {
+                error =e.toString();
+            }
+
+*/
 
     }
 }

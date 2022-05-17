@@ -1,18 +1,27 @@
 package com.example.superbearandroid;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.example.superbearandroid.control.bd;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignIn extends AppCompatActivity {
     private EditText etc, etco1;
+    private static  final String FILE_NAME = "NoAbrir.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +45,8 @@ public class SignIn extends AppCompatActivity {
                 if(validarCorreo(correo) == true){
                     if(validarContra(contra) == true){
                         Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
+                        Iniciar(correo, contra);
+
                         Intent ingresar = new Intent(this, Groups.class);
                         startActivity(ingresar);
                     }else{
@@ -65,4 +76,50 @@ public class SignIn extends AppCompatActivity {
         Matcher matcher = pattern.matcher(contra);
         return matcher.find();
     }
+
+    private void saveFile(String ID){
+        String textoASalvar = ID;
+        FileOutputStream fos = null;
+
+        try {
+            fos = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+            fos.write(textoASalvar.getBytes(StandardCharsets.UTF_8));
+            Log.d("tag1", "---------------------------------------------Fichero salvado en: " + getFilesDir() + "/" + FILE_NAME);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(fos != null){
+                try {
+                    fos.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void Iniciar(String email, String contra ){
+        try {
+            Connection connection= bd.getConnection();
+            String q = "SELECT id_usu FROM musuario WHERE cor_usu = ?";
+            PreparedStatement ps = connection.prepareStatement(q);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            String ID = rs.toString();
+            System.out.println(ID);
+            if(ID.isEmpty()) {
+                Toast.makeText(this, "No existe un registro de ese correo", Toast.LENGTH_LONG).show();
+                Intent volver = new Intent(this, SignIn.class);
+                startActivity(volver);
+            }else{
+                saveFile(ID);
+                Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
