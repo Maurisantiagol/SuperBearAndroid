@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new Task().execute();
+        System.out.println(Groups.buscarGrupos().get(0).getNom_grp()+Groups.buscarGrupos().get(1).getNom_grp()+Groups.buscarGrupos().get(2).getNom_grp()+Groups.buscarGrupos().get(3).getNom_grp()+Groups.buscarGrupos().get(4).getNom_grp());
+
 
     }
 
