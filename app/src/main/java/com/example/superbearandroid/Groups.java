@@ -1,8 +1,11 @@
 package com.example.superbearandroid;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,13 +20,23 @@ import java.util.ArrayList;
 
 public class Groups extends AppCompatActivity {
     private static String error="";
-
-
+    private ListView list;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> itemList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.groups);
-        System.out.println(buscarGrupos().get(0));
+        Dialog dialogo = new Dialog(Groups.this);
+
+
+        adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                buscarGrupos()
+
+        );
+        list.setAdapter(adapter);
 
     }
 
@@ -37,8 +50,9 @@ public class Groups extends AppCompatActivity {
         startActivity(seguir);
     }
 
-    public static ArrayList<grupo> buscarGrupos() {
+    public ArrayList<String> buscarGrupos() {
 
+        list = (ListView) findViewById(R.id.list);
         ArrayList<grupo> grupos = new ArrayList<>();
 
         try {
@@ -64,12 +78,20 @@ public class Groups extends AppCompatActivity {
 
                 grupos.add(objetoGrupo);
             }
+            itemList = new ArrayList<>();
+            for (int i=0;i<grupos.size();i++){
+                itemList.add(grupos.get(i).getNom_grp());
+
+
+            }
+
+            System.out.println(grupos.get(0).getNom_grp()+grupos.get(1).getNom_grp()+grupos.get(2).getNom_grp()+grupos.get(3).getNom_grp()+grupos.get(4).getNom_grp()+"--------------------------->");
 
 
 
         } catch (Exception e) {
             error = e.toString();
         }
-        return grupos;
+        return itemList;
     }
 }
