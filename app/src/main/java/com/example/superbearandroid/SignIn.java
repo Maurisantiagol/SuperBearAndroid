@@ -10,55 +10,54 @@ import android.widget.Toast;
 import com.example.superbearandroid.control.bd;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignIn extends AppCompatActivity {
+    private static final int MAX_BYTES = 8000;
     private EditText etc, etco1;
     private static  final String FILE_NAME = "NoAbrir.txt";
+    private ArrayList<String> itemList;
+    private ArrayList<String> ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
         etc = (EditText)findViewById(R.id.correo);
-        etco1 = (EditText)findViewById(R.id.contra);
 
     }
 
     public void enviar(View view){
 
         String correo = etc.getText().toString();
-        String contra = etco1.getText().toString();
 
         if(correo.length() == 0){
             Toast.makeText(this, "Debes ingresar un correo", Toast.LENGTH_LONG).show();
         }else{
-            if(contra.length() == 0){
-                Toast.makeText(this, "Debes ingresar una contraseña", Toast.LENGTH_LONG).show();
-            }else{
                 if(validarCorreo(correo) == true){
-                    if(validarContra(contra) == true){
-                        Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
-                        Iniciar(correo, contra);
-
-                        Intent ingresar = new Intent(this, Groups.class);
+                        Iniciar(correo);
+                    System.out.println(readItemList()+"---------------------------------------------------------------------------------->>>>");
+                    Intent ingresar = new Intent(this, Groups.class);
                         startActivity(ingresar);
-                    }else{
-                        Toast.makeText(this, "Ingresa una contraseña valida", Toast.LENGTH_LONG).show();
-                    }
+
+
                 }else{
                     Toast.makeText(this, "Ingresa un correo valido", Toast.LENGTH_LONG).show();
                 }
 
             }
         }
-    }
+
 
     public void volver(View view){
         Intent volver = new Intent(this, MainActivity.class);
@@ -85,6 +84,7 @@ public class SignIn extends AppCompatActivity {
             fos = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
             fos.write(textoASalvar.getBytes(StandardCharsets.UTF_8));
             Log.d("tag1", "---------------------------------------------Fichero salvado en: " + getFilesDir() + "/" + FILE_NAME);
+            System.out.println();
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -99,7 +99,29 @@ public class SignIn extends AppCompatActivity {
 
     }
 
-    public void Iniciar(String email, String contra ){
+
+    public ArrayList<String> readItemList() {
+        itemList = new ArrayList<>();
+        try {
+            FileInputStream fis = openFileInput(FILE_NAME);
+            byte[] buffer = new byte[MAX_BYTES];
+            int nread = fis.read(buffer);
+            if (nread > 0) {
+                String content = new String(buffer, 0, nread);
+                itemList.add(content);
+
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            Log.i("pauek", "readItemList: FileNotFoundException");
+        } catch (IOException e) {
+            Log.e("pauek", "readItemList: IOException");
+            Toast.makeText(this, "No se puede leer el archivo", Toast.LENGTH_SHORT).show();
+        }
+        return itemList;
+    }
+    public void Iniciar(String email ){
+        String records="";
         try {
             Connection connection= bd.getConnection();
             String q = "SELECT id_usu FROM musuario WHERE cor_usu = ?";
@@ -108,13 +130,15 @@ public class SignIn extends AppCompatActivity {
             ResultSet rs = ps.executeQuery();
             String ID = rs.toString();
             System.out.println(ID);
+            while(rs.next()){
+                records = rs.getString(1);
+            }
             if(ID.isEmpty()) {
                 Toast.makeText(this, "No existe un registro de ese correo", Toast.LENGTH_LONG).show();
                 Intent volver = new Intent(this, SignIn.class);
                 startActivity(volver);
             }else{
-                saveFile(ID);
-                Toast.makeText(this, "Iniciando sesión", Toast.LENGTH_LONG).show();
+                saveFile(records);
             }
 
         } catch (Exception e) {

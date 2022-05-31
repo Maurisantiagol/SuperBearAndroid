@@ -36,10 +36,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(Signin);
     }
 
-    public void Signup(View view){
-        Intent Signup = new Intent(this, SignUp.class);
-        startActivity(Signup);
+    public void Lists(View view){
+        Intent Lists = new Intent(this, Lists.class);
+        startActivity(Lists);
     }
+    public void Product(View view){
+        Intent Product = new Intent(this, Product.class);
+        startActivity(Product);
+    }
+
 
     class Task extends AsyncTask<Void, Void, Void> {
         String error="",records="";
@@ -54,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 ResultSet resultSet = ps.executeQuery();
                 String ID = resultSet.toString();
                 System.out.println(ID);
-
 
                 while(resultSet.next()){
                     records+= resultSet.getString(1) ;

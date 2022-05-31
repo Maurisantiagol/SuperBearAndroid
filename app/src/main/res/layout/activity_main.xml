@@ -92,23 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:layout_weight="1">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/txtregistrate"
-            android:gravity="center"
-            android:hint="Registrate"
-
-            android:onClick="Signup"
-            android:textColorHint="#000000"
-            android:textSize="20sp">
-
-        </Button>
-    </LinearLayout>
+        android:layout_weight="1"/>
 </LinearLayout>
 
 
