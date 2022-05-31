@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class SignIn extends AppCompatActivity {
     private static final int MAX_BYTES = 8000;
     private EditText etc, etco1;
-    private static  final String FILE_NAME = "NoAbrir.txt";
+    private static  final String FILE_NAME = "Idusuario.txt";
     private ArrayList<String> itemList;
     private ArrayList<String> ID;
 
@@ -84,7 +84,7 @@ public class SignIn extends AppCompatActivity {
             fos = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
             fos.write(textoASalvar.getBytes(StandardCharsets.UTF_8));
             Log.d("tag1", "---------------------------------------------Fichero salvado en: " + getFilesDir() + "/" + FILE_NAME);
-            System.out.println();
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {

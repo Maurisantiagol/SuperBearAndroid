@@ -1,6 +1,7 @@
 package com.example.superbearandroid;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,9 @@ import com.example.superbearandroid.control.bd;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,11 +28,12 @@ import java.util.ArrayList;
 
 public class Groups extends AppCompatActivity {
     private static final int MAX_BYTES = 8000;
-    private static  final String FILE_NAME = "NoAbrir.txt";
+    private static  final String FILE_NAME = "Idusuario.txt";
+    private static  final String FILE_NAME2 = "Idgrupo.txt";
     private static String error="";
     private ListView list;
     private ArrayAdapter<String> adapter;
-    private ArrayList<String> itemList;
+    private ArrayList<String> itemList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         list = (ListView) findViewById(R.id.list);
@@ -135,6 +139,25 @@ if (readItemList()!=0){
                     Log.i("Click", "click en el elemento " + position + " de mi ListView");
                     System.out.println(grupos.get(position).getId_grp());
                     //de aqui se escribe en otro txt y se manda a listas para que lea el txt y haga lo mismo que aqui
+                    String textoASalvar = Integer.toString(grupos.get(position).getId_grp());
+                    FileOutputStream fos = null;
+                    try {
+                        fos = openFileOutput(FILE_NAME2, Context.MODE_PRIVATE);
+                        fos.write(textoASalvar.getBytes(StandardCharsets.UTF_8));
+                        Log.d("tag1", "---------------------------------------------Fichero salvado en: " + getFilesDir() + "/" + FILE_NAME2);
+                        Intent seguir = new Intent(Groups.this, Lists.class);
+                        startActivity(seguir);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        if(fos != null){
+                            try {
+                                fos.close();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             });
 
